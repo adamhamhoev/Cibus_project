@@ -1,0 +1,31 @@
+<!-- dishes/templates/dishes/dish_list.html -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Наши Блюда</title>
+</head>
+<body>
+
+    <h1>Список наших блюд</h1>
+
+    <ul>
+        <!-- Это цикл Django. Он пройдет по списку 'dishes', который мы передали из view. -->
+        <!-- На каждой итерации в переменной 'dish' будет один объект блюда. -->
+        {% for dish in dishes %}
+            <li>
+                <!-- Выводим название блюда. Двойные фигурные скобки {{ ... }} означают "вставь сюда значение". -->
+                <!-- Тег {% url 'dish_detail' dish.id %} - это магия Django. Он: -->
+                <!-- 1. Находит URL с псевдонимом 'dish_detail'. -->
+                <!-- 2. Подставляет в него 'dish.id' текущего блюда. -->
+                <!-- 3. Генерирует правильную ссылку, например, /dish/1/ или /dish/5/. -->
+                <a href="{% url 'dish_detail' dish.id %}">
+                    {{ dish.name }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

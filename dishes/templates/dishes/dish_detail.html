@@ -1,0 +1,30 @@
+<!-- dishes/templates/dishes/dish_detail.html -->
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <!-- Здесь мы можем вывести название конкретного блюда в заголовок страницы -->
+    <title>{{ dish.name }}</title>
+</head>
+<body>
+
+    <!-- Выводим данные одного объекта 'dish', который мы передали из view -->
+    <h1>{{ dish.name }}</h1>
+    
+    <!-- Мы можем обращаться к полям связанной модели через точку! -->
+    <p><strong>Категория:</strong> {{ dish.category.name }}</p>
+
+    {% if dish.restaraunt %}
+        <p><strong>Откуда:</strong> {{ dish.restaraunt.name }}</p>
+    {% endif %}
+    
+    <p><strong>Срок годности:</strong> {{ dish.shelf_life_in_days }} дней</p>
+    
+    <hr>
+    
+    <!-- Ссылка для возврата на главную страницу -->
+    <a href="{% url 'dish_list' %}">Назад к списку всех блюд</a>
+
+</body>
+</html>
