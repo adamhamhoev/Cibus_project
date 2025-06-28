@@ -1,5 +1,3 @@
-<!-- dishes/templates/dishes/dish_list.html -->
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,6 +5,26 @@
     <title>Наши Блюда</title>
 </head>
 <body>
+
+    <!-- Блок навигации теперь находится внутри BODY, где ему и место -->
+    <nav>
+      {% if user.is_authenticated %}
+        <p>
+          Привет, {{ user.username }}! | 
+          <form action="{% url 'logout' %}" method="post" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" style="background:none; border:none; padding:0; color:blue; text-decoration:underline; cursor:pointer;">Выйти</button>
+          </form>
+        </p>
+      {% else %}
+        <p>
+          <a href="{% url 'login' %}">Войти</a> | 
+          <a href="{% url 'signup' %}">Зарегистрироваться</a>
+        </p>
+      {% endif %}
+    </nav>
+    <hr>
+
 
     <h1>Список наших блюд</h1>
 
